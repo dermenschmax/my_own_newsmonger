@@ -6,6 +6,12 @@ class Story
   
   key :user_name, String
   
+  # votes
+  #   - we're counting the number (votes) and remember who voted (voters => [user_name, ...])
+  #   - we add an index to the voters array
+  key :voters,    Array
+  key :votes,     Integer, :default => 0
+  ensure_index(:voters)
   
   #key :slug,      String
   #key :voters,    Array

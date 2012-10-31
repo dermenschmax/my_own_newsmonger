@@ -1,4 +1,8 @@
 MyOwnNewsmonger::Application.routes.draw do
+
+  resources :stories
+  match 'stories/:id/vote' => 'stories#vote'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
