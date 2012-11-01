@@ -1,5 +1,7 @@
 <h1>Listing stories</h1>
-
+<p>
+  <%= link_to "home", stories_path %>
+</p>
 <table>
   <tr>
     <th>Stimmen</th>
@@ -13,13 +15,13 @@
     <td><%= story.votes %></td>
     <td><%= story.title %></td>
     <td><%= story.text %></td>
-    <td><%= story.user_name %></td>
+    <td><%= link_to story.user_name, url_for(:controller => "stories", :action => "stories_by", :user_name => story.user_name) %></td>
     <td><%= link_to 'Vote', url_for(:controller => "stories", :action => "vote", :id => story._id), method: :post %></td>
     <td><%= link_to 'Show', story %></td>
     <td><%= link_to 'Edit', edit_story_path(story) %></td>
     <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
-<% end %>
+<% end unless (@stories.nil? || @stories.empty?)%>
 </table>
 
 <br />

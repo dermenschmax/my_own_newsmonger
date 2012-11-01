@@ -90,4 +90,15 @@ class StoriesController < ApplicationController
     
     redirect_to :stories
   end
+  
+  
+  # GET /stories_by/"me"
+  def stories_by
+    user_name = params[:user_name]
+    logger.debug("[stories_by] user_name: #{user_name}")
+    
+    @stories = Story.all(:user_name => user_name)
+    
+    render :index
+  end
 end
