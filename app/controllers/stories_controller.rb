@@ -80,4 +80,14 @@ class StoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # POST /stories/1/vote
+  def vote
+    id = params[:id]
+    s = Story.first(:_id => id)
+    s.votes += 1
+    s.save!
+    
+    redirect_to :stories
+  end
 end

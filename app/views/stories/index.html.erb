@@ -8,13 +8,13 @@
     <th>Username</th>
   </tr>
 
-<% @stories.each do |story| %>
+<% @stories.sort_by{|s| s.votes}.reverse().each() do |story| %>
   <tr>
     <td><%= story.votes %></td>
     <td><%= story.title %></td>
     <td><%= story.text %></td>
     <td><%= story.user_name %></td>
-    <td><%= link_to 'Vote', , method: :post %></td>
+    <td><%= link_to 'Vote', url_for(:controller => "stories", :action => "vote", :id => story._id), method: :post %></td>
     <td><%= link_to 'Show', story %></td>
     <td><%= link_to 'Edit', edit_story_path(story) %></td>
     <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
