@@ -8,6 +8,7 @@ gem 'rails', '3.2.8'
 
 gem 'mongo_mapper'
 gem 'bson_ext'
+gem 'jquery-rails'
 
 
 # Gems used only for assets and not required
@@ -22,7 +23,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
