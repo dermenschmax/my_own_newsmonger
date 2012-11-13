@@ -1,4 +1,4 @@
-<%= form_for(@story) do |f| %>
+<%= form_for @story, :html => { :class => 'form-horizontal' } do |f| %>
   <% if @story.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
@@ -10,18 +10,32 @@
       </ul>
     </div>
   <% end %>
-  <div class="input_area">
-    <p>
-      <%= f.label "Title: "%> <br/><%= f.text_field :title %>
-    </p>
-    <p>
-      <%= f.label "Text: "%> <br/><%= f.text_area :text %>
-    </p>
-    <p>
-      <%= f.label "Username: "%> <br/><%= f.text_field :user_name %>
-    </p>
+  
+  
+  <div class="control-group">
+    <%= f.label "Title:", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="control-group">
+    <%= f.label "Text:", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :text, :class => 'text_area' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Username:", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :user_name, :class => 'text_field' %>
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to "Cancel", stories_path, :class => 'btn' %>
   </div>
 <% end %>
+
