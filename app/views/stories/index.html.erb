@@ -32,6 +32,22 @@
   </tbody>
 </table>
 
+<% @stories.sort_by{|s| s.votes}.reverse().each() do |story| %>
+<div class="story_container"> 
+  <div class="story_head lead">
+    <%= story.title %>
+  </div>
+  <div class="row">
+    <div class="votes span1">
+      <%= story.votes %>
+    </div>
+    <div class="story_body span7">
+      <%= story.text %>
+    </div>
+  </div>
+</div>
+<% end unless (@stories.nil? || @stories.empty?) -%>
+
 <br />
 
 <%= link_to 'New Story', new_story_path, :class => 'btn btn-primary' %>
