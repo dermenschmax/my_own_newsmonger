@@ -1,53 +1,42 @@
 <div class="page-header">
   <h1>Stories</h1>
+  <span><%= link_to "home", stories_path %></span>
 </div>
 <p>
-  <%= link_to "home", stories_path %>
+  <%= link_to 'New Story', new_story_path, :class => 'btn btn-primary' %>
 </p>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Stimmen</th>
-      <th>Title</th>
-      <th>Text</th>
-      <th>Username</th>
-    </tr>
-  </thead>
-  <tbody>
-
-<% @stories.sort_by{|s| s.votes}.reverse().each() do |story| %>
-  <tr>
-    <td><%= story.votes %></td>
-    <td><%= story.title %></td>
-    <td><%= story.text %></td>
-    <td><%= link_to story.user_name, url_for(:controller => "stories", :action => "stories_by", :user_name => story.user_name) %></td>
-    
-    <td><%= link_to 'Vote', url_for(:controller => "stories", :action => "vote", :id => story._id), method: :post %></td>
-    <td><%= link_to 'Show', story, :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Edit', edit_story_path(story), :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Destroy', story, :method => :delete, :data => { confirm: 'Are you sure?' }, :class =>  'btn btn-mini btn-danger'%></td>
-  </tr>
-<% end unless (@stories.nil? || @stories.empty?)%>
-  </tbody>
-</table>
 
 <% @stories.sort_by{|s| s.votes}.reverse().each() do |story| %>
 <div class="story_container"> 
   <div class="story_head lead">
     <%= story.title %>
   </div>
+  <div class="story_author">
+    <%= link_to story.user_name, url_for(:controller => "stories", :action => "stories_by", :user_name => story.user_name) %>
+  </div>
   <div class="row">
     <div class="votes span1">
-      <%= story.votes %>
+      <span class="number_of_votes"><%= story.votes %></span>
+      <br/>
+      <span class="votes_sub_text">votes</span>
     </div>
     <div class="story_body span7">
-      <%= story.text %>
+      
+      <%= story.text.slice(0..500) %>...
+      
+      <br/>
+      
+      <span class="story_actions">
+        <ul>
+          <li><%= link_to "(more)", story if story.text.size > 500 %></li>
+          <li><%= link_to "vote this!", url_for(:action => "vote", :id => story.id), :class => "btn btn-mini" %></li>
+          <li><%= "edit" -%></li>
+        </ul>
+      </span>
+      
     </div>
   </div>
 </div>
 <% end unless (@stories.nil? || @stories.empty?) -%>
 
-<br />
-
-<%= link_to 'New Story', new_story_path, :class => 'btn btn-primary' %>
