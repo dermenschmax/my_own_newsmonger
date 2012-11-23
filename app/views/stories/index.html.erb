@@ -28,11 +28,13 @@
       <br/>
       
       <span class="story_actions">
-        <ul>
-          <li><%= link_to "(more)", story if story.text.size > 500 %></li>
-          <li><%= link_to "vote this!", url_for(:action => "vote", :id => story.id), :class => "btn btn-mini" %></li>
-          <li><%= "edit" -%></li>
-        </ul>
+        <div class="navbar">
+          <ul class="nav">
+            <li><%= link_to "read more", story if story.text.size > 500 %></li>
+            <li><%= link_to "vote this!", url_for(:action => "vote", :id => story.id) %></li>
+            <li><%= link_to "edit", stories_path -%></li>
+          </ul>
+        </div>
       </span>
       
     </div>
