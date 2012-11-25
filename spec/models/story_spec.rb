@@ -10,5 +10,12 @@ describe Story do
     Story.create.should be_persisted
   end
 
+  # TODO: specs für
+  #  - das Voten
+  #  - user_name
+  #  - title
+  #  - text
+  #  - Sortierung (basierend auf dem votes-Wert)
+
 
 end
