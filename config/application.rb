@@ -67,6 +67,9 @@ module MyOwnNewsmonger
     
     config.generators do |g|
       g.orm :mongo_mapper
+    
+      g.test_framework :rspec, :fixture => true, :views => false, :fixture_replacement => :factory_girl, :view_specs => false
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
   end
 end
