@@ -85,7 +85,7 @@ class StoriesController < ApplicationController
   def vote
     id = params[:id]
     s = Story.first(:_id => id)
-    s.votes += 1
+    s.vote()
     s.save!
     
     redirect_to :stories
