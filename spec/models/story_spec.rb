@@ -32,16 +32,31 @@ describe Story do
     s = FactoryGirl.create(:story)
     s.votes.should eq 0
     
-    # TODO: Hier weiter
+    s.vote()
+    s.votes.should eq 1
+  end
+  
+  # voting doesn't affect others
+  it "is sure that voting is isolated" do
+    s1 = FactoryGirl.create(:story, title: "story 1")
+    s2 = FactoryGirl.create(:story, title: "story 2")
+    
+    s1.votes.should eq 0
+    s2.votes.should eq 0
+    
+    s1.vote()
+    s1.votes.should eq 1
+    s2.votes.should eq 0
   end
 
 
-  # TODO: specs für
-  #  - das Voten
+  # TODO: specs
+  #  - voting
+  #    -> each user can vote only once
   #  - user_name
   #  - title
   #  - text
-  #  - Sortierung (basierend auf dem votes-Wert)
+  #  - sorting (basierend auf dem votes-Wert)
 
 
 end

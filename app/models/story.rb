@@ -36,7 +36,7 @@ class Story
   # the user is added to the :voters array.
   # ---------------------------------------------------------------------
   def vote()
-    votes += 1
+    self.votes += 1
   end
   
   
