@@ -1,0 +1,48 @@
+
+<div class="story_container"> 
+  <div class="story_head lead">
+    <%= story.title %>
+  </div>
+  <div class="story_author">
+    <%= link_to story.user_name, url_for(:controller => "stories", :action => "stories_by", :user_name => story.user_name) %>
+  </div>
+  <div class="row">
+    <div class="votes_and_comments span1">
+      <div class="votes">
+        <span class="number_of_votes"><%= story.votes %></span>
+        <br/>
+        <span class="votes_sub_text">votes</span>
+      </div>
+      <div class="comments">
+        <span class="number_of_comments"><%= story.comment_count %></span>
+        <br/>
+        <span class="comments_sub_text">comments</span>
+      </div>
+    </div>
+    <div class="story_body span7">
+      
+      <%= if (show_full) then story.text else story.text.slice(0..500) + "..." end %>
+      
+      <br/>
+      
+      <div class="comments_container">
+        <%= render :partial => "comments/show_comments", :locals => {:story => story, :show_full => show_full}-%>
+      
+      </div>
+      
+      <span class="story_actions">
+        <div class="navbar">
+          <ul class="nav">
+            <li><%= link_to "full story", story %></li>
+            <li><%= link_to "vote this!", url_for(:action => "vote", :id => story.id) %></li>
+            <li><%= link_to "edit", edit_story_path(story.id) -%></li>
+            <li><%= link_to "comment on this", new_story_comment_path(story.id) -%></li>
+            <li><%= link_to "show comments", "#" -%></li>
+            <li><%= button_to "Delete ", story, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger' %></li>
+          </ul>
+        </div>
+      </span>
+      
+    </div>
+  </div>
+</div> 

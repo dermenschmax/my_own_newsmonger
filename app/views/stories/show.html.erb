@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<%= render :partial => "show_story", :locals => {:story => @story, :show_full => true} %>
 
 <%= link_to 'Edit', edit_story_path(@story) %> |
 <%= link_to 'Back', stories_path %>

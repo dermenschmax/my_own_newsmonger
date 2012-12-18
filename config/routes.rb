@@ -1,6 +1,9 @@
 MyOwnNewsmonger::Application.routes.draw do
 
-  resources :stories
+  resources :stories do
+    resources :comments
+  end
+  
   match 'stories/:id/vote' => 'stories#vote'
   match 'stories_by/:user_name' => 'stories#stories_by'
 

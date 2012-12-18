@@ -1,0 +1,16 @@
+        <% story.comments.each() do |comment| -%>
+        <div class="row">
+          
+          <div class="comment span6 offset1">
+            <span class="comment_body">
+              <%= if (show_full) then comment.text else comment.text.slice(0..100) + "..." end -%>
+            </span>
+            <% if (show_full) then %>
+              <br/>
+              <span class="comment_actions pull-right">
+                <%= button_to "Delete ", story_comment_path(story.id, comment.id), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger' %>
+              </span>
+            <% end -%>
+          </div>
+        </div>
+        <% end -%>

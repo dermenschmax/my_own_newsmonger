@@ -33,6 +33,10 @@ group :development, :test do
 end
 
 
+group :test do
+  gem 'database_cleaner'
+end
+
 
 
 # To use ActiveModel has_secure_password

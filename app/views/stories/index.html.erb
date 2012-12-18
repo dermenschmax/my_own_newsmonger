@@ -8,37 +8,10 @@
 
 
 <% @stories.sort_by{|s| s.votes}.reverse().each() do |story| %>
-<div class="story_container"> 
-  <div class="story_head lead">
-    <%= story.title %>
-  </div>
-  <div class="story_author">
-    <%= link_to story.user_name, url_for(:controller => "stories", :action => "stories_by", :user_name => story.user_name) %>
-  </div>
-  <div class="row">
-    <div class="votes span1">
-      <span class="number_of_votes"><%= story.votes %></span>
-      <br/>
-      <span class="votes_sub_text">votes</span>
-    </div>
-    <div class="story_body span7">
-      
-      <%= story.text.slice(0..500) %>...
-      
-      <br/>
-      
-      <span class="story_actions">
-        <div class="navbar">
-          <ul class="nav">
-            <li><%= link_to "read more", story if story.text.size > 500 %></li>
-            <li><%= link_to "vote this!", url_for(:action => "vote", :id => story.id) %></li>
-            <li><%= link_to "edit", stories_path -%></li>
-          </ul>
-        </div>
-      </span>
-      
-    </div>
-  </div>
-</div>
+
+  
+  <%= render :partial => "show_story", :locals=> {:story => story, :show_full => false} %>
+  
+<hr/>
 <% end unless (@stories.nil? || @stories.empty?) -%>
 
